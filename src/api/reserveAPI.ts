@@ -3,6 +3,12 @@ import { Reservation } from "@/types/reservation";
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
+export interface ReservePayload {
+  roomNumber: number;
+  date: string;
+  floor: number;
+}
+
 export const getAllReservationsApi = async (): Promise<Reservation[]> => {
   try {
     const response = await axios.get(`${API_BASE_URL}/reservations/findAll`);
@@ -22,5 +28,15 @@ export const cancelReservationApi = async (roomNumber: number, date: string) => 
   } catch (err) {
     console.error("예약 취소 API 실패", err);
     throw err;
+  }
+};
+
+export const postReservation = async (payload: ReservePayload) => {
+  try {
+    const response = await axios.post(`${API_BASE_URL}/reservations`, payload);
+    return response.data;
+  } catch (error) {
+    console.error("예약 실패:", error);
+    throw error;
   }
 };

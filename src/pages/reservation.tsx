@@ -1,5 +1,4 @@
 import { useState } from "react";
-import Sidebar from "@/components/sidebar";
 import axios from "axios";
 import generateCalendar from "@/components/generateCalendar";
 import RoomSelector from "@/components/Room/RoomSelector";
@@ -65,7 +64,6 @@ export default function Reservation() {
 
   return (
     <div className="flex w-full h-screen bg-white">
-      <Sidebar />
 
       <main className="flex-1 p-10 overflow-auto">
         <div className="w-full h-36 pl-7 pt-14 bg-white/90 border-b-2 border-zinc-300">
