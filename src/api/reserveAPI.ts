@@ -12,3 +12,18 @@ export const getAllReservationsApi = async (): Promise<Reservation[]> => {
     return [];
   }
 };
+export interface ReservePayload {
+  roomNumber: number;
+  date: string;
+  floor: number;
+}
+
+export const postReservation = async (payload: ReservePayload) => {
+  try {
+    const response = await axios.post(`${API_BASE_URL}/reservations`, payload);
+    return response.data;
+  } catch (error) {
+    console.error("예약 실패:", error);
+    throw error;
+  }
+};
